@@ -6,9 +6,9 @@
         <label>prolog</label>
         <subpath>build</subpath>
         <remote>
-          <url>https://github.com/EricZinda/InductorProlog.git</url>
+          <url>https://github.com/PierceLBrooks/InductorProlog.git</url>
           <git_repo>
-            <branch>master</branch>
+            <branch>pierce</branch>
             <credentials>
               <username>username</username>
               <password>password</password>
@@ -36,7 +36,7 @@
           </export>
           <export type="headers">
             <key>PROLOG_INCLUDE_PATH</key>
-            <value><install></install>/include</value>
+            <value><origin></origin>/src</value>
           </export>
           <export type="libraries">
             <key>PROLOG_LIBRARIES_PATH</key>
@@ -59,7 +59,10 @@
         </generator>
         <definitions></definitions>
         <links>
-          <link>*prolog*</link>
+          <link>*lib*</link>
+          <if_check id="BUILDSTER_OS" check="Darwin">
+            <link>"-framework Foundation"</link>
+          </if_check>
         </links>
         <imports>
           <import>prolog</import>
