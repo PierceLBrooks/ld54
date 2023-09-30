@@ -1,0 +1,8 @@
+/build
+/install
+/Distribution
+/*.gltf
+/*.glb
+/*.bin
+/.DS_Store
+
