@@ -45,6 +45,52 @@
         </exports>
         <imports></imports>
       </dependency>
+      <dependency>
+        <label>cowl</label>
+        <subpath>build</subpath>
+        <remote>
+          <url>https://github.com/PierceLBrooks/cowl.git</url>
+          <git_repo>
+            <branch>pierce</branch>
+            <credentials>
+              <username>username</username>
+              <password>password</password>
+            </credentials>
+          </git_repo>
+        </remote>
+        <build>
+          <arguments>
+            <argument>-DCMAKE_POLICY_DEFAULT_CMP0074=NEW</argument>
+            <argument>-DCOWL_LIBRARY_TYPE=SHARED</argument>
+          </arguments>
+          <cmake>
+            <generator>
+              <switch id="BUILDSTER_OS">
+                <case check="Windows">MinGW Makefiles</case>
+                <case check="Linux">Unix Makefiles</case>
+                <case check="Darwin">Unix Makefiles</case>
+                <default><quit></quit></default>
+              </switch>
+            </generator>
+            <source>..</source>
+          </cmake>
+        </build>
+        <exports>
+          <export type="all">
+            <key>COWL_PATH</key>
+            <value><install></install></value>
+          </export>
+          <export type="headers">
+            <key>COWL_INCLUDE_PATH</key>
+            <value><install></install>/include</value>
+          </export>
+          <export type="libraries">
+            <key>COWL_LIBRARIES_PATH</key>
+            <value><install></install>/lib</value>
+          </export>
+        </exports>
+        <imports></imports>
+      </dependency>
     </dependencies>
     <targets>
       <target type="executable">
@@ -59,6 +105,7 @@
         </generator>
         <definitions></definitions>
         <links>
+          <link>*cowl*</link>
           <link>*lib*</link>
           <if_check id="BUILDSTER_OS" check="Darwin">
             <link>"-framework Foundation"</link>
@@ -66,8 +113,26 @@
         </links>
         <imports>
           <import>prolog</import>
+          <import>cowl</import>
         </imports>
       </target>
     </targets>
+    <post timing="build">
+      <build>
+        <shells>
+          <shell>
+            <work><distribution></distribution></work>
+            <commands>
+              <command>
+                <copy>
+                  <from><distribution></distribution>/../../ldj54.owl</from>
+                  <to><distribution></distribution></to>
+                </copy>
+              </command>
+            </commands>
+          </shell>
+        </shells>
+      </build>
+    </post>
   </project>
 </buildster>
