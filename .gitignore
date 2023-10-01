@@ -5,4 +5,7 @@
 /*.glb
 /*.bin
 /.DS_Store
+/ont-converter.jar
+/nt2owl.py.*
+/*.owl
 

@@ -1,0 +1,15 @@
+<ldj54> <description> "Ludum Dare Game Jam 54" .
+<ldj54> <title> "LDJ54" .
+<ldj54> <versionInfo> "1.0" .
+<ldj54> <label> "LDJ54" .
+<ldj54> <license> "Unlicense" .
+<ldj54> <contributor> "Pierce L. Brooks" .
+<ldj54> <provenance> "Ludum Dare Game Jam 54" .
+<ldj54> <versionIRI> <http://127.0.0.1:8080/ldj54/1.0.0> .
+<ldj54> <type> <Ontology> .
+<ldj54> <first> <myFoo> .
+<ldj54> <rest> <myBar> .
+<myFoo> <type> <Class> .
+<myBar> <type> <Class> .
+<myBar> <subClassOf> <myFoo> .
+

@@ -1,4 +1,5 @@
 #!/bin/sh
-python3 -m pip install buildster
+python3 -m pip install -r ./requirements.txt
+python3 ./nt2owl.py ./ldj54.nt ./ldj54.owl
 python3 -m buildster ./Project.xml
 
