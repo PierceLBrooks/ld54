@@ -1,0 +1,186 @@
+Prefix(:=<http://127.0.0.1:8080/ldj54#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://127.0.0.1:8080/ldj54>
+<http://127.0.0.1:8080/ldj54#http://127.0.0.1:8080/ldj54/1.0.0>
+Annotation(rdfs:label "LDJ54")
+Annotation(owl:versionInfo "1.0")
+Annotation(<http://purl.org/dc/elements/1.1/title> "LDJ54")
+Annotation(<http://purl.org/dc/elements/1.1/description> "Ludum Dare Game Jam 54")
+
+Declaration(Class(:Wall))
+Declaration(Class(:Creature))
+Declaration(Class(:Floor))
+Declaration(Class(:Key))
+Declaration(Class(:CloseDoorMessage))
+Declaration(Class(:EnemyKillPlayerMessage))
+Declaration(Class(:UnlockDoorMessage))
+Declaration(Class(:OpenedDoor))
+Declaration(Class(:Nothing))
+Declaration(Class(:Player))
+Declaration(Class(:PickUpKeyMessage))
+Declaration(Class(:PlayerWithKey))
+Declaration(Class(:Enemy))
+Declaration(Class(:Door))
+Declaration(Class(:LockedDoor))
+Declaration(Class(:Message))
+Declaration(Class(:Environ))
+Declaration(Class(:PlayerWithoutKey))
+Declaration(Class(:ClosedDoor))
+Declaration(Class(:Thing))
+Declaration(Class(:OpenDoorMessage))
+Declaration(Class(:Entity))
+Declaration(ObjectProperty(:willReportMessageWhenMovedOnto))
+Declaration(ObjectProperty(:willReportMessageUponInteraction))
+Declaration(ObjectProperty(:willReturnInteractionFrom))
+Declaration(ObjectProperty(:canBeInteractedUponBy))
+Declaration(ObjectProperty(:canInteractUpon))
+Declaration(ObjectProperty(:canMoveOnto))
+Declaration(ObjectProperty(:isAdjacentTo))
+Declaration(ObjectProperty(:willBeReplacedByUponInteraction))
+
+
+
+############################
+#   Classes
+############################
+
+# Class: <http://127.0.0.1:8080/ldj54#CloseDoorMessage> (I closed the door!)
+
+AnnotationAssertion(rdfs:label :CloseDoorMessage "I closed the door!")
+SubClassOf(:CloseDoorMessage :Message)
+
+# Class: <http://127.0.0.1:8080/ldj54#ClosedDoor> (Closed Door)
+
+AnnotationAssertion(rdfs:label :ClosedDoor "Closed Door")
+SubClassOf(:ClosedDoor :Door)
+SubClassOf(:ClosedDoor ObjectHasValue(:willReportMessageUponInteraction :OpenDoorMessage))
+SubClassOf(:ClosedDoor ObjectHasValue(:willBeReplacedByUponInteraction :OpenedDoor))
+SubClassOf(:ClosedDoor ObjectHasValue(:canBeInteractedUponBy :Player))
+
+# Class: <http://127.0.0.1:8080/ldj54#Creature> (Creature)
+
+AnnotationAssertion(rdfs:label :Creature "Creature")
+SubClassOf(:Creature :Entity)
+SubClassOf(:Creature ObjectSomeValuesFrom(:canMoveOnto :Floor))
+SubClassOf(:Creature ObjectSomeValuesFrom(:canMoveOnto :OpenedDoor))
+SubClassOf(:Creature ObjectSomeValuesFrom(:canMoveOnto :Key))
+SubClassOf(:Creature ObjectAllValuesFrom(:canMoveOnto ObjectUnionOf(:Floor :OpenedDoor :Key)))
+
+# Class: <http://127.0.0.1:8080/ldj54#Door> (Door)
+
+AnnotationAssertion(rdfs:label :Door "Door")
+SubClassOf(:Door :Environ)
+
+# Class: <http://127.0.0.1:8080/ldj54#Enemy> (Enemy)
+
+AnnotationAssertion(rdfs:label :Enemy "Enemy")
+SubClassOf(:Enemy :Creature)
+SubClassOf(:Enemy ObjectHasValue(:canMoveOnto :Player))
+
+# Class: <http://127.0.0.1:8080/ldj54#EnemyKillPlayerMessage> (I got killed by an enemy!)
+
+AnnotationAssertion(rdfs:label :EnemyKillPlayerMessage "I got killed by an enemy!")
+SubClassOf(:EnemyKillPlayerMessage :Message)
+
+# Class: <http://127.0.0.1:8080/ldj54#Entity> (Entity)
+
+AnnotationAssertion(rdfs:label :Entity "Entity")
+SubClassOf(:Entity :Thing)
+
+# Class: <http://127.0.0.1:8080/ldj54#Environ> (Environ)
+
+AnnotationAssertion(rdfs:label :Environ "Environ")
+SubClassOf(:Environ :Thing)
+
+# Class: <http://127.0.0.1:8080/ldj54#Floor> (Floor)
+
+AnnotationAssertion(rdfs:label :Floor "Floor")
+SubClassOf(:Floor :Environ)
+
+# Class: <http://127.0.0.1:8080/ldj54#Key> (Key)
+
+AnnotationAssertion(rdfs:label :Key "Key")
+SubClassOf(:Key :Entity)
+SubClassOf(:Key ObjectHasValue(:willBeReplacedByUponInteraction :Nothing))
+SubClassOf(:Key ObjectHasValue(:canBeInteractedUponBy :PlayerWithoutKey))
+
+# Class: <http://127.0.0.1:8080/ldj54#LockedDoor> (Locked Door)
+
+AnnotationAssertion(rdfs:label :LockedDoor "Locked Door")
+SubClassOf(:LockedDoor :Door)
+SubClassOf(:LockedDoor ObjectHasValue(:willReturnInteractionFrom :PlayerWithKey))
+SubClassOf(:LockedDoor ObjectHasValue(:willBeReplacedByUponInteraction :OpenedDoor))
+SubClassOf(:LockedDoor ObjectHasValue(:canBeInteractedUponBy :PlayerWithKey))
+
+# Class: <http://127.0.0.1:8080/ldj54#Message> (Message)
+
+AnnotationAssertion(rdfs:label :Message "Message")
+
+# Class: <http://127.0.0.1:8080/ldj54#Nothing> (Nothing)
+
+AnnotationAssertion(rdfs:label :Nothing "Nothing")
+
+# Class: <http://127.0.0.1:8080/ldj54#OpenDoorMessage> (I opened the door!)
+
+AnnotationAssertion(rdfs:label :OpenDoorMessage "I opened the door!")
+SubClassOf(:OpenDoorMessage :Message)
+
+# Class: <http://127.0.0.1:8080/ldj54#OpenedDoor> (Opened Door)
+
+AnnotationAssertion(rdfs:label :OpenedDoor "Opened Door")
+SubClassOf(:OpenedDoor :Door)
+SubClassOf(:OpenedDoor ObjectHasValue(:willReportMessageUponInteraction :CloseDoorMessage))
+SubClassOf(:OpenedDoor ObjectHasValue(:willBeReplacedByUponInteraction :ClosedDoor))
+SubClassOf(:OpenedDoor ObjectHasValue(:canBeInteractedUponBy :Player))
+
+# Class: <http://127.0.0.1:8080/ldj54#PickUpKeyMessage> (I picked up the key!)
+
+AnnotationAssertion(rdfs:label :PickUpKeyMessage "I picked up the key!")
+SubClassOf(:PickUpKeyMessage :Message)
+
+# Class: <http://127.0.0.1:8080/ldj54#Player> (Player)
+
+AnnotationAssertion(rdfs:label :Player "Player")
+SubClassOf(:Player :Creature)
+SubClassOf(:Player ObjectHasValue(:willReportMessageWhenMovedOnto :EnemyKillPlayerMessage))
+SubClassOf(:Player ObjectSomeValuesFrom(:canInteractUpon :Door))
+SubClassOf(:Player ObjectSomeValuesFrom(:canInteractUpon :Key))
+SubClassOf(:Player ObjectAllValuesFrom(:canInteractUpon ObjectUnionOf(:Door :Key)))
+
+# Class: <http://127.0.0.1:8080/ldj54#PlayerWithKey> (Player with Key)
+
+AnnotationAssertion(rdfs:label :PlayerWithKey "Player with Key")
+SubClassOf(:PlayerWithKey :Player)
+SubClassOf(:PlayerWithKey ObjectHasValue(:willReportMessageUponInteraction :UnlockDoorMessage))
+SubClassOf(:PlayerWithKey ObjectHasValue(:willBeReplacedByUponInteraction :PlayerWithoutKey))
+
+# Class: <http://127.0.0.1:8080/ldj54#PlayerWithoutKey> (Player without Key)
+
+AnnotationAssertion(rdfs:label :PlayerWithoutKey "Player without Key")
+SubClassOf(:PlayerWithoutKey :Player)
+SubClassOf(:PlayerWithoutKey ObjectHasValue(:willReportMessageUponInteraction :PickUpKeyMessage))
+SubClassOf(:PlayerWithoutKey ObjectHasValue(:willBeReplacedByUponInteraction :PlayerWithKey))
+
+
+# Class: <http://127.0.0.1:8080/ldj54#Thing> (Thing)
+
+AnnotationAssertion(rdfs:label :Thing "Thing")
+
+# Class: <http://127.0.0.1:8080/ldj54#UnlockDoorMessage> (I used the key to unlock the door!)
+
+AnnotationAssertion(rdfs:label :UnlockDoorMessage "I used the key to unlock the door!")
+SubClassOf(:UnlockDoorMessage :Message)
+
+# Class: <http://127.0.0.1:8080/ldj54#Wall> (Wall)
+
+AnnotationAssertion(rdfs:label :Wall "Wall")
+SubClassOf(:Wall :Environ)
+
+
+)

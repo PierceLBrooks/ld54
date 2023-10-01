@@ -7,9 +7,103 @@
 <ldj54> <provenance> "Ludum Dare Game Jam 54" .
 <ldj54> <versionIRI> <http://127.0.0.1:8080/ldj54/1.0.0> .
 <ldj54> <type> <Ontology> .
-<ldj54> <first> <myFoo> .
-<ldj54> <rest> <myBar> .
-<myFoo> <type> <Class> .
-<myBar> <type> <Class> .
-<myBar> <subClassOf> <myFoo> .
+<Nothing> <type> <Class> .
+<Nothing> <subClassOf> <nil> .
+<Nothing> <label> "Nothing" .
+<Thing> <type> <Class> .
+<Thing> <label> "Thing" .
+<Environ> <type> <Class> .
+<Environ> <subClassOf> <Thing> .
+<Environ> <label> "Environ" .
+<Wall> <type> <Class> .
+<Wall> <subClassOf> <Environ> .
+<Wall> <label> "Wall" .
+<Floor> <type> <Class> .
+<Floor> <subClassOf> <Environ> .
+<Floor> <label> "Floor" .
+<Door> <type> <Class> .
+<Door> <subClassOf> <Environ> .
+<Door> <label> "Door" .
+<OpenedDoor> <type> <Class> .
+<OpenedDoor> <subClassOf> <Door> .
+<OpenedDoor> <label> "Opened Door" .
+<ClosedDoor> <type> <Class> .
+<ClosedDoor> <subClassOf> <Door> .
+<Closed Door> <label> "Closed Door" .
+<LockedDoor> <type> <Class> .
+<LockedDoor> <subClassOf> <Door> .
+<LockedDoor> <label> "Locked Door" .
+<Entity> <type> <Class> .
+<Entity> <subClassOf> <Thing> .
+<Entity> <label> "Entity" .
+<Creature> <type> <Class> .
+<Creature> <subClassOf> <Entity> .
+<Creature> <label> "Creature" .
+<Key> <type> <Class> .
+<Key> <subClassOf> <Entity> .
+<Key> <label> "Key" .
+<Player> <type> <Class> .
+<Player> <subClassOf> <Creature> .
+<Player> <label> "Player" .
+<PlayerWithKey> <type> <Class> .
+<PlayerWithKey> <subClassOf> <Player> .
+<PlayerWithKey> <label> "Player_with_Key" .
+<PlayerWithoutKey> <type> <Class> .
+<PlayerWithoutKey> <subClassOf> <Player> .
+<PlayerWithoutKey> <label> "Player without Key" .
+<Enemy> <type> <Class> .
+<Enemy> <subClassOf> <Creature> .
+<Enemy> <label> "Enemy" .
+<willBeReplacedByUponInteraction> <type> <ObjectProperty> .
+<isAdjacentTo> <type> <ObjectProperty> .
+<canMoveOnto> <type> <ObjectProperty> .
+<canInteractUpon> <type> <ObjectProperty> .
+<canBeInteractedUponBy> <type> <ObjectProperty> .
+<willReturnInteractionFrom> <type> <ObjectProperty> .
+<willReportMessageUponInteraction> <type> <ObjectProperty> .
+<willReportMessageWhenMovedOnto> <type> <ObjectProperty> .
+<Creature> <canMoveOnto> <Floor> .
+<Creature> <canMoveOnto> <OpenedDoor> .
+<Creature> <canMoveOnto> <Key> .
+<Enemy> <canMoveOnto> <Player> .
+<Player> <canInteractUpon> <Door> .
+<Player> <canInteractUpon> <Key> .
+<LockedDoor> <canBeInteractedUponBy> <PlayerWithKey> .
+<OpenedDoor> <canBeInteractedUponBy> <Player> .
+<ClosedDoor> <canBeInteractedUponBy> <Player> .
+<Wall> <isAdjacentTo> <Floor> .
+<Door> <isAdjacentTo> <Wall> .
+<Door> <isAdjacentTo> <Floor> .
+<Entity> <isAdjacentTo> <Floor> .
+<Key> <canBeInteractedUponBy> <PlayerWithoutKey> .
+<Key> <willReturnInteractionFrom> <PlayerWithoutKey> .
+<LockedDoor> <willReturnInteractionFrom> <PlayerWithKey> .
+<LockedDoor> <willBeReplacedByUponInteraction> <OpenedDoor> .
+<OpenedDoor> <willBeReplacedByUponInteraction> <ClosedDoor> .
+<ClosedDoor> <willBeReplacedByUponInteraction> <OpenedDoor> .
+<Key> <willBeReplacedByUponInteraction> <Nothing> .
+<PlayerWithoutKey> <willBeReplacedByUponInteraction> <PlayerWithKey> .
+<PlayerWithKey> <willBeReplacedByUponInteraction> <PlayerWithoutKey> .
+<PlayerWithKey> <willReportMessageUponInteraction> <UnlockDoorMessage> .
+<PlayerWithoutKey> <willReportMessageUponInteraction> <PickUpKeyMessage> .
+<OpenedDoor> <willReportMessageUponInteraction> <CloseDoorMessage> .
+<ClosedDoor> <willReportMessageUponInteraction> <OpenDoorMessage> .
+<Player> <willReportMessageWhenMovedOnto> <EnemyKillPlayerMessage> .
+<Message> <type> <Class> .
+<Message> <label> "Message" .
+<UnlockDoorMessage> <type> <Class> .
+<UnlockDoorMessage> <subClassOf> <Message> .
+<UnlockDoorMessage> <label> "I used the key to unlock the door!" .
+<PickUpKeyMessage> <type> <Class> .
+<PickUpKeyMessage> <subClassOf> <Message> .
+<PickUpKeyMessage> <label> "I picked up the key!" .
+<CloseDoorMessage> <type> <Class> .
+<CloseDoorMessage> <subClassOf> <Message> .
+<CloseDoorMessage> <label> "I closed the door!" .
+<OpenDoorMessage> <type> <Class> .
+<OpenDoorMessage> <subClassOf> <Message> .
+<OpenDoorMessage> <label> "I opened the door!" .
+<EnemyKillPlayerMessage> <type> <Class> .
+<EnemyKillPlayerMessage> <subClassOf> <Message> .
+<EnemyKillPlayerMessage> <label> "I got killed by an enemy!" .
 

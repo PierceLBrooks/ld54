@@ -36,7 +36,15 @@ types = """
 "provenance": "http://purl.org/dc/terms/provenance",
 "Ontology": "http://www.w3.org/2002/07/owl#Ontology",
 "AnnotationProperty": "http://www.w3.org/2002/07/owl#AnnotationProperty",
-"versionIRI": "http://www.w3.org/2002/07/owl#versionIRI"
+"versionIRI": "http://www.w3.org/2002/07/owl#versionIRI",
+"domain": "http://www.w3.org/2000/01/rdf-schema#domain",
+"range": "http://www.w3.org/2000/01/rdf-schema#range",
+"subPropertyOf": "http://www.w3.org/2000/01/rdf-schema#subPropertyOf",
+"InverseFunctionalProperty": "http://www.w3.org/2002/07/owl#InverseFunctionalProperty",
+"AllDisjointClasses": "http://www.w3.org/2002/07/owl#AllDisjointClasses",
+"comment": "http://www.w3.org/2000/01/rdf-schema#comment",
+"TransitiveProperty": "http://www.w3.org/2002/07/owl#TransitiveProperty",
+"inverseOf": "http://www.w3.org/2002/07/owl#inverseOf"
 }
 """
 
